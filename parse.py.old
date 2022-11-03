@@ -1,0 +1,43 @@
+import yaml, json
+with open('deployment.yaml') as file:
+  manifest = yaml.safe_load(file)
+
+with open('_definitions.json') as file:
+  definitions = json.loads(file.read())["definitions"]
+
+deps = []
+global depth
+depth = 0
+
+def main():
+  kind = manifest["kind"]
+  uri = 'io.k8s.api.core.v1.{}'.format(kind)
+  definition = definitions[uri]
+  properties = definition['properties']
+  browse(properties)
+  print(manifest)
+
+def browse(properties):
+  global depth
+  if depth == 3:
+    return 'Done'
+  for i in properties:
+    if i == 'apiVersion' or i == 'kind' or i == 'metadata':
+      continue
+    property = properties[i]
+    if '$ref' in property:
+      uri = property['$ref'].split('/')[2]
+      if 'properties' in definitions[uri]:
+        deps.append(i)
+        depth = depth + 1
+        browse(definitions[uri]['properties'])
+    elif 'items' in property:
+      if '$ref' in property['items']:
+        uri = property['items']['$ref'].split('/')[2]
+        if 'properties' in definitions[uri]:
+          deps.append(i)
+          depth = depth + 1
+          browse(definitions[uri]['properties'])
+
+if __name__ == "__main__":
+  main()
