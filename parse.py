@@ -42,10 +42,7 @@ def dive_manifest(currentNode, currentRef, parentName, currentDepth = 0):
                 for value in currentNode:
                     dive_manifest(value, currentRef, parentName, currentDepth + 1)
 
-def main():
-    with open(yaml_path) as file:
-        manifest = yaml.safe_load(file)
-
+def parse(manifest):
         try:
             kind = manifest["kind"]
             apiVersion = manifest["apiVersion"]
@@ -62,6 +59,10 @@ def main():
         uri = ref + "." + kind
 
         dive_manifest(manifest, uri, None)
+        return dependencies
 
 if __name__ == '__main__':
-    main()
+    with open(yaml_path) as file:
+        manifest = yaml.safe_load(file)
+
+    parse(manifest)
