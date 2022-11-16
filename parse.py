@@ -43,6 +43,7 @@ def dive_manifest(currentNode, currentRef, parentName, currentDepth = 0):
                     dive_manifest(value, currentRef, parentName, currentDepth + 1)
 
 def parse(manifest):
+        global dependencies
         try:
             kind = manifest["kind"]
             apiVersion = manifest["apiVersion"]
@@ -58,8 +59,21 @@ def parse(manifest):
         ref = "io.k8s.api." + apiVersion
         uri = ref + "." + kind
 
+        dependencies = []
         dive_manifest(manifest, uri, None)
         return dependencies
+
+def buildDT(deps):
+  dt = {}
+  for dep in deps:
+    key = list(dep)[0] 
+    if key not in dt:
+      dt[key] = []
+      dt[key].append({ "name": dep[key], "site": None })
+    else:
+      dt[key].append({ "name": dep[key], "site": None })
+
+  return dt
 
 if __name__ == '__main__':
     with open(yaml_path) as file:
