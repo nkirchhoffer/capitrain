@@ -1,5 +1,8 @@
 {
   "containers": [
     "nginx"
+  ],
+  "gcePersistentDisk": [
+    "app-cdn"
   ]
 }

@@ -73,6 +73,9 @@ def buildDT(deps):
     else:
       dt[key].append({ "name": dep[key], "site": None })
 
+  # TODO: exception to remove, return dt in a tree and only retrieve the leaves
+  if 'volumes' in dt:
+      del dt['volumes']
   return dt
 
 if __name__ == '__main__':

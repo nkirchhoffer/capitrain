@@ -2,9 +2,10 @@ version: '3.1'
 
 services:
   site1:
-    image: site-worker:latest
+    image: cheops:latest
     volumes:
-    - ./resources1.json:/app/resources.json:ro
+    - ./site/resources1.json:/app/resources.json:ro
+    - ./sites.yaml:/app/sites.yaml:ro
     networks:
     - bridge
     environment:
@@ -12,9 +13,10 @@ services:
     ports:
     - 5001:5000
   site2:
-    image: site-worker:latest
+    image: cheops:latest
     volumes:
-    - ./resources2.json:/app/resources.json:ro
+    - ./site/resources2.json:/app/resources.json:ro
+    - ./sites.yaml:/app/sites.yaml:ro
     networks:
     - bridge
     environment:
@@ -22,9 +24,10 @@ services:
     ports:
     - 5002:5000
   site3:
-    image: site-worker:latest
+    image: cheops:latest
     volumes:
-    - ./resources3.json:/app/resources.json:ro
+    - ./site/resources3.json:/app/resources.json:ro
+    - ./sites.yaml:/app/sites.yaml:ro
     networks:
     - bridge
     environment:

@@ -1,7 +1,7 @@
 sites:
   site1:
-    url: http://127.0.0.1:5001
+    url: http://site1:5000
   site2:
-    url: http://127.0.0.1:5002
+    url: http://site2:5000
   site3:
-    url: http://127.0.0.1:5003
+    url: http://site3:5000
