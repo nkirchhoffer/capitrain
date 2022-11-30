@@ -54,35 +54,37 @@ This system has been created to work as a mesh, each agent knowing all the other
 - Response :
   - `Content-Type`: `application/json`
   - Response accordingly to the example :
-  ```JSON
+
+```JSON
   {
 	"containers": [
-		{
-			"name": "nginx",
-			"site": "site3"
-		}
-	],
-	"gcePersistentDisk": [
-		{
-			"name": "app-cdn",
-			"site": "site3"
-		}
-	],
-	"persistentVolumeClaim": [
-		{
-			"name": "nginx-data",
-			"site": "site1"
-		},
-		{
-			"name": "nginx-config",
-			"site": [
-				"site1",
-				"site2"
-			]
-		}
-	]
-}
-  ```
+			{
+				"name": "nginx",
+				"site": "site3"
+			}
+		],
+		"gcePersistentDisk": [
+			{
+				"name": "app-cdn",
+				"site": "site3"
+			}
+		],
+		"persistentVolumeClaim": [
+			{
+				"name": "nginx-data",
+				"site": "site1"
+			},
+			{
+				"name": "nginx-config",
+				"site": [
+					"site1",
+					"site2"
+				]
+			}
+		]
+	}
+```
+
 
 **POST /checkout - Check if the dependencies are located on the local cluster**
 
@@ -145,8 +147,8 @@ This system has been created to work as a mesh, each agent knowing all the other
 			]
 		}
 	]
-}
-  ```
+	}
+	```
 
 ## Building and hosting the agents
 
