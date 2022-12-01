@@ -19,7 +19,8 @@ This system has been created to work as a mesh, each agent knowing all the other
 - Request :
   - `Content-Type`: `text/yaml`
   - Body structure :
-  ```YAML
+  
+```YAML
   version: apps/v1
   kind: Deployment
   metadata:
@@ -49,7 +50,8 @@ This system has been created to work as a mesh, each agent knowing all the other
     - name: cdn
       gcePersistentDisk:
         pdName: app-cdn
-  ```
+```
+
   - The manifest specified in the request must be a valid Kubernetes manifest
 - Response :
   - `Content-Type`: `application/json`
@@ -91,7 +93,8 @@ This system has been created to work as a mesh, each agent knowing all the other
 - Request :
   - `Content-Type`: `application/json`
   - Example of body :
-  ```JSON
+
+```JSON
   {
 	"containers": [
 		{
@@ -116,11 +119,12 @@ This system has been created to work as a mesh, each agent knowing all the other
 		}
 	]
 }
-  ```
+```
 - Response :
   - `Content-Type`: `application/json`
   - Response accordingly to the request example
-  ```JSON
+
+```JSON
   {
 	"containers": [
 		{
@@ -148,7 +152,7 @@ This system has been created to work as a mesh, each agent knowing all the other
 		}
 	]
 	}
-	```
+```
 
 ## Building and hosting the agents
 
